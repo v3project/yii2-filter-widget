@@ -5,7 +5,7 @@
  * @copyright (c) 2010 SkeekS
  * @date 13.11.2017
  */
-namespace v3project\yii2\filter;
+namespace v3project\yii2\productfilter;
 
 use yii\base\InvalidConfigException;
 use yii\base\Widget;
@@ -13,9 +13,9 @@ use yii\db\ActiveQuery;
 
 /**
  * Class FilterWidget
- * @package v3project\yii2\filter
+ * @package v3project\yii2\productfilter
  */
-class FilterWidget extends Widget {
+class ProductFilterWidget extends Widget {
 
     /**
      * @var ActiveQuery
@@ -25,7 +25,7 @@ class FilterWidget extends Widget {
     /**
      * @var
      */
-    public $view_file = '@v3project/yii2/filter/views/default';
+    public $view_file = '@v3project/yii2/filter/views/product-filter';
 
     /**
      * @throws InvalidConfigException

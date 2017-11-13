@@ -1,5 +1,5 @@
 {
-	"name": "v3project/yii2-filter-widget",
+	"name": "v3project/yii2-product-filter",
 	"description": "Фильтры товаров",
 	"keywords": ["yii", "skeeks", "framework", "component", "agent"],
     	"homepage": "https://cms.skeeks.com/",
@@ -21,13 +21,7 @@
 	},
     "autoload": {
         "psr-4": {
-            "v3project\\yii2\\filter\\": "src/"
-        }
-    },
-	"extra": {
-        "config-plugin": {
-            "console": "src/config/main-console.php",
-            "web": "src/config/main.php"
+            "v3project\\yii2\\productfilter\\": "src/"
         }
     }
 }

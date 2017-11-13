@@ -6,5 +6,6 @@
  * @date 13.11.2017
  */
 /* @var $this yii\web\View */
-/* @var $this \v3project\yii2\filter\FilterWidget */
+/* @var $this \v3project\yii2\productfilter\ProductFilterWidget */
 $wiget = $this->context;
+?>
