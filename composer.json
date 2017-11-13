@@ -1,0 +1,33 @@
+{
+	"name": "v3project/yii2-filter-widget",
+	"description": "Фильтры товаров",
+	"keywords": ["yii", "skeeks", "framework", "component", "agent"],
+    	"homepage": "https://cms.skeeks.com/",
+	"type": "yii2-extension",
+	"license": "GPL-3.0+",
+	"support": {
+        "issues": "https://skeeks.com/",
+        "wiki": "https://cms.skeeks.com/docs/",
+        "source": "https://github.com/skeeks-cms/cms-agent"
+    },
+	"authors": [
+		{
+			"name": "Semenov Alexander",
+			"email": "semenov@skeeks.com"
+		}
+	],
+	"require": {
+		"yiisoft/yii2": "~2.0.13"
+	},
+    "autoload": {
+        "psr-4": {
+            "v3project\\yii2\\filter\\": "src/"
+        }
+    },
+	"extra": {
+        "config-plugin": {
+            "console": "src/config/main-console.php",
+            "web": "src/config/main.php"
+        }
+    }
+}
