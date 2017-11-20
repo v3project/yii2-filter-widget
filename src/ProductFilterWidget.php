@@ -20,23 +20,22 @@ class ProductFilterWidget extends Widget {
     /**
      * @var ActiveQuery
      */
-    public $activeQuery;
+    public $query;
 
     /**
      * @var
      */
-    public $view_file = '@v3project/yii2/filter/views/product-filter';
+    public $view_file = '@v3project/yii2/productfilter/views/product-filter';
 
     /**
      * @throws InvalidConfigException
      */
-    public function init()
-    {
-        if (!$this->activeQuery) {
+    public function init() {
+        if (!$this->query) {
             throw new InvalidConfigException("Ошибка конфигурации виджета");
         }
         
-        if (!$this->activeQuery instanceof ActiveQuery) {
+        if (!$this->query instanceof ActiveQuery) {
             throw new InvalidConfigException("Ошибка конфигурации виджета");
         }
         

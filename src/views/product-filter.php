@@ -9,3 +9,4 @@
 /* @var $this \v3project\yii2\productfilter\ProductFilterWidget */
 $wiget = $this->context;
 ?>
+Фильтры
