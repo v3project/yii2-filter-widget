@@ -33,9 +33,9 @@ class ProductFilterWidget extends Widget
     public $view_file = '@v3project/yii2/productfilter/views/product-filter';
 
     /**
-     * @var array
+     * @var null|EavSearchModel
      */
-    public $features = [];
+    public $eavSearchModel = null;
 
     /**
      * @throws InvalidConfigException
@@ -58,11 +58,5 @@ class ProductFilterWidget extends Widget
         return $this->render($this->view_file);
     }
 
-    /**
-     * @return array|V3pFeature[]
-     */
-    public function getFeatures()
-    {
-        return V3pFeature::find()->all();
-    }
+
 }
