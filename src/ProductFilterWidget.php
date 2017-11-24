@@ -5,17 +5,22 @@
  * @copyright (c) 2010 SkeekS
  * @date 13.11.2017
  */
+
 namespace v3project\yii2\productfilter;
 
+use common\models\V3pFeature;
 use yii\base\InvalidConfigException;
 use yii\base\Widget;
 use yii\db\ActiveQuery;
 
 /**
- * Class FilterWidget
+ * @var V3pFeature[] $features
+ *
+ * Class ProductFilterWidget
  * @package v3project\yii2\productfilter
  */
-class ProductFilterWidget extends Widget {
+class ProductFilterWidget extends Widget
+{
 
     /**
      * @var ActiveQuery
@@ -28,21 +33,36 @@ class ProductFilterWidget extends Widget {
     public $view_file = '@v3project/yii2/productfilter/views/product-filter';
 
     /**
+     * @var array
+     */
+    public $features = [];
+
+    /**
      * @throws InvalidConfigException
      */
-    public function init() {
+    public function init()
+    {
         if (!$this->query) {
             throw new InvalidConfigException("Ошибка конфигурации виджета");
         }
-        
+
         if (!$this->query instanceof ActiveQuery) {
             throw new InvalidConfigException("Ошибка конфигурации виджета");
         }
-        
+
         parent::init();
     }
-    
-    public function run() {
+
+    public function run()
+    {
         return $this->render($this->view_file);
+    }
+
+    /**
+     * @return array|V3pFeature[]
+     */
+    public function getFeatures()
+    {
+        return V3pFeature::find()->all();
     }
 }
