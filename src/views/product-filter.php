@@ -9,6 +9,10 @@
 /* @var $this \v3project\yii2\productfilter\ProductFilterWidget */
 $wiget = $this->context;
 ?>
-<?
-foreach ($wiget->getAva)
-?>
+<? foreach ($wiget->filtersHandlers as $filtersHandler) : ?>
+    <? if ($filtersHandler->toArray()) :?>
+        <? foreach ($filtersHandler->toArray() as $key => $value) : ?>
+            <?= $filtersHandler->renderByAttribute($key); ?>
+        <? endforeach;  ?>
+    <? endif;  ?>
+<? endforeach;  ?>
