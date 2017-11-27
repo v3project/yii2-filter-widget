@@ -53,7 +53,13 @@ class FiltersWidget extends Widget
      */
     public function run()
     {
+        $this->registerAssets();
         return $this->render($this->viewFile);
+    }
+
+    public function registerAssets()
+    {
+        return $this;
     }
 
     /**
@@ -75,7 +81,8 @@ class FiltersWidget extends Widget
      * @param $data
      * @return $this
      */
-    public function load($data) {
+    public function load($data)
+    {
         if ($this->filtersHandlers) {
             foreach ($this->filtersHandlers as $searchHandler) {
                 $searchHandler->load($data);
