@@ -12,6 +12,7 @@ use common\models\V3pFeature;
 use yii\base\InvalidConfigException;
 use yii\base\Widget;
 use yii\db\ActiveQuery;
+use yii\helpers\ArrayHelper;
 
 /**
  * Class FiltersWidget
@@ -75,6 +76,43 @@ class FiltersWidget extends Widget
         }
 
         return $this;
+    }
+
+    public $filtersParamName = 'f';
+
+    protected $_data = [];
+
+    public function loadFromRequest() {
+
+        $data = \Yii::$app->request->post();
+        if ($data = \Yii::$app->request->post()) {
+            //Чистить незаполненные
+            if (isset($data[$this->filtersParamName])) {
+                foreach ($data[$this->filtersParamName] as $key => $value) {
+                    if (!$value) {
+                        unset($data[$this->filtersParamName][$key]);
+                    }
+                }
+            }
+
+            $this->_data = $data;
+            $this->load($data);
+
+            \Yii::$app->response->redirect($this->getFilterUrl());
+
+        } elseif ($data = \Yii::$app->request->get($this->filtersParamName)) {
+            $data = (array) unserialize(base64_decode($data));
+            $this->_data = $data;
+            $this->load($data);
+        }
+
+        return $this;
+    }
+
+    public function getFilterUrl() {
+        return \Yii::$app->request->pathInfo . "?" . http_build_query([
+            $this->filtersParamName => base64_encode(serialize($this->_data))
+        ]);
     }
 
     /**
