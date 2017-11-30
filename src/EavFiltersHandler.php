@@ -9,6 +9,7 @@
 namespace v3project\yii2\productfilter;
 
 use yii\base\DynamicModel;
+use yii\data\DataProviderInterface;
 use yii\db\ActiveQuery;
 use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
@@ -80,9 +81,18 @@ class EavFiltersHandler extends DynamicModel
     /**
      * @param ActiveQuery $activeQuery
      */
-    public function search(ActiveQuery $activeQuery)
+    public function initQuery(ActiveQuery $activeQuery)
     {
         return $this;
+    }
+
+    /**
+     * @param DataProviderInterface $dataProvider
+     * @return $this
+     */
+    public function initDataProvider(DataProviderInterface $dataProvider)
+    {
+        return $this->initQuery($dataProvider->query);
     }
 
     public function renderByAttribute($code, ActiveForm $form) {

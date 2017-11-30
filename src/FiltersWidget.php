@@ -71,7 +71,7 @@ class FiltersWidget extends Widget
     {
         if ($this->filtersHandlers) {
             foreach ($this->filtersHandlers as $searchHandler) {
-                $searchHandler->search($activeQuery);
+                $searchHandler->initQuery($activeQuery);
             }
         }
 
@@ -84,7 +84,6 @@ class FiltersWidget extends Widget
 
     public function loadFromRequest() {
 
-        $data = \Yii::$app->request->post();
         if ($data = \Yii::$app->request->post()) {
             //Чистить незаполненные
             if (isset($data[$this->filtersParamName])) {
@@ -94,11 +93,22 @@ class FiltersWidget extends Widget
                     }
                 }
             }
+            if (isset($data['_csrf'])) {
+                unset($data['_csrf']);
+            }
 
             $this->_data = $data;
             $this->load($data);
 
-            \Yii::$app->response->redirect($this->getFilterUrl());
+            /*\Yii::$app->response->redirect($this->getFilterUrl());
+            \Yii::$app->end();*/
+
+            $newUrl = $this->getFilterUrl();
+            \Yii::$app->view->registerJs(<<<JS
+window.history.pushState('page', 'title', '{$newUrl}');
+JS
+);
+
 
         } elseif ($data = \Yii::$app->request->get($this->filtersParamName)) {
             $data = (array) unserialize(base64_decode($data));
@@ -110,7 +120,7 @@ class FiltersWidget extends Widget
     }
 
     public function getFilterUrl() {
-        return \Yii::$app->request->pathInfo . "?" . http_build_query([
+        return \Yii::$app->request->absoluteUrl . "?" . http_build_query([
             $this->filtersParamName => base64_encode(serialize($this->_data))
         ]);
     }

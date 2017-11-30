@@ -8,6 +8,7 @@
 
 namespace v3project\yii2\productfilter;
 
+use yii\data\DataProviderInterface;
 use yii\db\ActiveQuery;
 use yii\widgets\ActiveForm;
 
@@ -26,7 +27,13 @@ interface IFiltersHandler
      * @param ActiveQuery $activeQuery
      * @return static
      */
-    public function search(ActiveQuery $activeQuery);
+    public function initQuery(ActiveQuery $activeQuery);
+
+    /**
+     * @param DataProviderInterface $dataProvider
+     * @return static
+     */
+    public function initDataProvider(DataProviderInterface $dataProvider);
 
     /**
      * @param $data
